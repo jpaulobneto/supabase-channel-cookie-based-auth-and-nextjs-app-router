@@ -1,3 +1,4 @@
+import NewTodo from '@/components/NewTodo'
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
@@ -20,6 +21,7 @@ export default async function Home() {
       <h1>
         Hello, {session.user.user_metadata.full_name || session.user.email}
       </h1>
+      <NewTodo />
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </main>
   )
