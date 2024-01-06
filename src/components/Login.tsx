@@ -11,7 +11,7 @@ export default function Login() {
     await supabase.auth.signInWithOAuth({
       provider: 'github',
       options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
+        redirectTo: `${location.origin}/auth/callback`,
       },
     })
     router.refresh()
