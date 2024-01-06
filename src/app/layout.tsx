@@ -1,9 +1,8 @@
-import type { Metadata } from 'next'
+import Login from '@/components/Login'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Button from '@/components/Button'
-import ButtonGroup from '@/components/ButtonGroup'
-import SignInButton from '@/components/SignInButton'
+
+import type { Metadata } from 'next'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,10 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ButtonGroup>
-          <SignInButton>Sign In</SignInButton>
-          <Button>Sign Out</Button>
-        </ButtonGroup>
+        <Login />
         {children}
       </body>
     </html>
