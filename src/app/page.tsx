@@ -1,4 +1,5 @@
 import NewTodo from '@/components/NewTodo'
+import Todo from '@/components/Todo'
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
@@ -6,7 +7,10 @@ import { redirect } from 'next/navigation'
 export default async function Home() {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
-  const { data } = await supabase.from('todos').select()
+  const { data: todos } = await supabase
+    .from('todos')
+    .select()
+    .match({ is_complete: false })
 
   const {
     data: { session },
@@ -22,7 +26,11 @@ export default async function Home() {
         Hello, {session.user.user_metadata.full_name || session.user.email}
       </h1>
       <NewTodo />
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      {todos?.map((todo) => (
+        <p key={todo.id}>
+          <Todo todo={todo} />
+        </p>
+      ))}
     </main>
   )
 }
