@@ -2,7 +2,6 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { createClient } from '@/utils/supabase/middleware'
 
 export async function middleware(request: NextRequest) {
-  console.log('middleware loaded')
   try {
     // This `try/catch` block is only here for the interactive tutorial.
     // Feel free to remove once you have Supabase connected.
